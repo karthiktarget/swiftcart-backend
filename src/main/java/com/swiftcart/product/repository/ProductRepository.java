@@ -5,9 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
+public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByCategoryIgnoreCase(String category);
+    Page<Product> findByCategoryIgnoreCase(String category, Pageable pageable);
 
     boolean existsByTitle(String title);
 }

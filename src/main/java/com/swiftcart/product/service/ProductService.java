@@ -1,4 +1,3 @@
-
 package com.swiftcart.product.service;
 
 import com.swiftcart.product.dto.ProductDTO;
@@ -11,6 +10,7 @@ import java.util.Arrays;
 
 @Service
 public class ProductService {
+
     private final ProductRepository productRepository;
     private final RestTemplate restTemplate;
 
@@ -25,7 +25,7 @@ public class ProductService {
 
         if (products != null) {
             Arrays.stream(products).forEach(dto -> {
-                // Prevent duplicate by checking title
+                // ✅ Prevent duplicates using title
                 if (!productRepository.existsByTitle(dto.getTitle())) {
                     Product product = new Product();
                     product.setTitle(dto.getTitle());
@@ -38,5 +38,4 @@ public class ProductService {
             });
         }
     }
-
 }
